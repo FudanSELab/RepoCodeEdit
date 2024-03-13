@@ -39,10 +39,17 @@ def create_json_file(jsons,repo_name):
 def create_index(repo_json_path,repo_name):
     index_path = os.path.join(REPO_INDEX_PATH,repo_name)
     subprocess.run(["sh","./create_index.sh",repo_json_path,index_path])
+    return index_path
 
-def index_pipeline(repo_path):
+# 给定某个仓库及commit_id，为该状态的仓库建立索引
+def index_pipeline(commit_id,repo_path):
+    switch2commit(commit_id,repo_path)
     create_json_file(py2json(repo_path),repo_path.split('/')[-1])
-    create_index(REPO_JSONS_PATH,REPO_INDEX_PATH)
+    return create_index(REPO_JSONS_PATH,REPO_INDEX_PATH)
+
+# 切换某个仓库的状态到某个commit下
+def switch2commit(repo_path,commit_id):
+    subprocess.run(["sh","change_commit.sh",repo_path,commit_id])
 
 if __name__ == "__main__":
     index_pipeline('/home/fdse/zqc/fake_repo')
