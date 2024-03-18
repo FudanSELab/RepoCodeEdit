@@ -131,6 +131,38 @@ def cal_recall(json_path,repo_path):
             subprocess.run(["rm","-r",index_path])
     return total_recall
 
+# 给定一个issue和commit_id,分别对仓库中文件名和文件内容建index,并进行检索，得到加权指标
+def cal_recall(json_path,repo_path):
+    total_recall = 0
+    total_example = 0
+    with open(json_path,'r') as f:
+        jsons = json.load(f)
+        total_example = len(jsons)
+        for js in tqdm(jsons):
+            issue = js['issue']
+            commit_id = js['commit_id']
+            try:
+                index_path,json_path = index_pipeline(commit_id,repo_path)
+                searcher = LuceneSearcher(index_path)
+                searcher.set_bm25(k1=0.82, b=0.68)
+            except:
+                continue
+            retrieved_files = retrieve(issue,searcher)
+            gt = js['gt_files']
+            with open(log_path,'a',encoding='utf-8') as log:
+                log.write(f"ISSUE: {issue}\n")
+                log.write(f"Retrieved_files : {retrieved_files}\n")
+                log.write(f"Ground Truth : {gt}\n")
+            retrieved_files = filter_retrieved_files(retrieved_files,context_size=CONTEXT_SIZE)
+            #根据rf和gt计算单个issue的recall    
+            total_recall += single_recall(retrieved_files,gt)/total_example
+            with open(log_path,'a',encoding='utf-8') as log:
+                log.write(f"Current Recall: {total_recall}\n\n")
+                log.write("=========================================================\n\n")
+            subprocess.run(["rm",json_path])
+            subprocess.run(["rm","-r",index_path])
+    return total_recall
+
 # 计算单个issue的recall
 def single_recall(retrieved,ground_truth):
     correct = 0
