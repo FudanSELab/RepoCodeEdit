@@ -1,11 +1,46 @@
 airflow
- Repo Weighted Recall: 0.09118417271522197
- 
-Final Recall:
-0.09118417271522197
-
-airflow
- Repo Weighted Recall: 0.09118417271522197
- 
-Final Recall:
-0.09118417271522197
+ Repo Weighted Recall: 0.1478264597643613
+celery
+ Repo Weighted Recall: 0.1840729437741035
+conan
+ Repo Weighted Recall: 0.20542835959045086
+conda
+ Repo Weighted Recall: 0.17126962677865748
+dagster
+ Repo Weighted Recall: 0.26402996479911434
+integrations-core
+ Repo Weighted Recall: 0.5585470085470087
+compose
+ Repo Weighted Recall: 0.21094371947791085
+spaCy
+ Repo Weighted Recall: 0.15954583683767876
+GitPython
+ Repo Weighted Recall: 0.3600746268656715
+jax
+ Repo Weighted Recall: 0.10794278185582543
+google-cloud-python
+ Repo Weighted Recall: 0.3585548320756279
+transformers
+ Repo Weighted Recall: 0.14052227051091465
+ipython
+ Repo Weighted Recall: 0.00880895759017043
+spark-nlp
+ Repo Weighted Recall: 0.0
+jupyterlab
+ Repo Weighted Recall: 0.3149388528138529
+pipelines
+ Repo Weighted Recall: 0.6607142857142857
+lightning
+ Repo Weighted Recall: 0.26339372482199297
+meson
+ Repo Weighted Recall: 0.11176580806899968
+numpy
+ Repo Weighted Recall: 0.13551558459868873
+mmdetection
+ Repo Weighted Recall: 0.3219824754815154
+pandas
+ Repo Weighted Recall: 0.02796273740657494
+pants
+ Repo Weighted Recall: 0.2028168470614371
+prefect
+ Repo Weighted Recall: 0.251123566869835
